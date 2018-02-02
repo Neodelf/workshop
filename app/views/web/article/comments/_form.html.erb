@@ -1,4 +1,4 @@
-<%= form_with(model: [ @article, @article.comments.build ]) do |form| %>
+<%= form_with(model: [ @article, @article.comments.build ], url: web_article_comments_path(@article)) do |form| %>
   <p>
     <%= form.label :commentor %><br>
     <%= form.text_field :commentor %>
