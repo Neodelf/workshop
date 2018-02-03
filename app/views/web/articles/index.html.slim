@@ -1,0 +1,17 @@
+h1 Articles:
+table
+  tr
+    th Title
+    th Text
+    th Category
+  = link_to 'New article', new_article_path
+  - @articles.each do |article|
+    tr
+      td= article.title
+      td= article.text
+      td= article.category&.name
+      td= link_to 'Show', article_path(article)
+      td= link_to 'Edit', edit_article_path(article)
+      td= link_to 'Destroy', article_path(article),
+          method: :delete,
+          data: { confirm: 'Are you sure?' }

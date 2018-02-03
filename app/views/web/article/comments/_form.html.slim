@@ -1,0 +1,11 @@
+= form_with(model: [ @article, @article.comments.build ], url: article_comments_path(@article)) do |form|
+  p
+    = form.label :commentor
+    br
+    = form.text_field :commentor
+  p
+    = form.label :body
+    br
+    = form.text_area :body
+  p
+    = form.submit

@@ -1,0 +1,13 @@
+= simple_form_for @article do |form|
+  p
+    = form.label :title
+    br
+    = form.text_field :title
+  p
+    = form.label :text
+    br
+    = form.text_area :text
+  p
+    = form.collection_select :category_id, Article::Category.all, :id, :name
+  p
+    = form.submit
