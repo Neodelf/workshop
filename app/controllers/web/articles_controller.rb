@@ -1,9 +1,7 @@
 class Web::ArticlesController < Web::ApplicationController
 
-  http_basic_authenticate_with name: "viraj", password: "password", except: [:index, :show]
-
   def index
-    @articles = Article.all
+    @articles = Article.all.includes(:category)
   end
 
   def show
@@ -11,7 +9,7 @@ class Web::ArticlesController < Web::ApplicationController
   end
 
   def new
-    @article = Article.new
+    @article = Article.new(category: Article::Category.new)
   end
 
   def edit
@@ -22,7 +20,7 @@ class Web::ArticlesController < Web::ApplicationController
     @article = Article.new(article_params)
 
     if @article.save
-      redirect_to [:web, @article]
+      redirect_to [@article]
     else
       render 'new'
     end
@@ -32,7 +30,7 @@ class Web::ArticlesController < Web::ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to [:web, @article]
+      redirect_to [@article]
     else
       render 'edit'
     end
@@ -42,11 +40,11 @@ class Web::ArticlesController < Web::ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to [:web, @article]
+    redirect_to [@article]
   end
 
   private
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :category_id)
   end
 end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :web do
+  scope module: :web do
     get 'welcome/index'
     resources :articles do
       scope module: 'articles' do
