@@ -17,8 +17,14 @@ class Web::ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should get new' do
     get new_article_url
-
     assert_response :success
+  end
+
+  test 'should create' do
+    article_attrs = { title: 'new_title', text: 'text' }
+    assert_difference('Article.count', 1) do
+      post articles_url, params: { article: article_attrs }
+    end
   end
 
   test 'should destroy' do
