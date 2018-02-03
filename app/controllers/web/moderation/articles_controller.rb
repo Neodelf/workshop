@@ -1,4 +1,14 @@
 class Web::Moderation::ArticlesController < Web::Moderation::ApplicationController
+  def create
+    @article = Article.find(params[:id])
+    if @article && @article.may_moderate?
+      @article.moderate!
+    else
+      puts @article.errors.full_messages
+    end
+    redirect_to articles_path
+  end
+
   def edit
     @article = Web::ModerationArticleType.find(params[:id])
   end

@@ -1,6 +1,6 @@
 class Web::ArticlesController < Web::ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.all.includes(:category)
   end
 
   def show
@@ -11,14 +11,26 @@ class Web::ArticlesController < Web::ApplicationController
     @article = Article.new
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
   def create
     @article = Article.new(article_params)
 
     if @article.save
       redirect_to @article
     else
-      puts @article.errors.full_messages
       render 'new'
+    end
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to articles_path
+    else
+      render 'edit'
     end
   end
 

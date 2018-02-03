@@ -1,0 +1,6 @@
+h1 Edit article
+= render 'form'
+br
+  - if @article.may_moderate?
+    = button_to 'Send to moderate', moderation_articles_path(id: @article.id)
+= link_to 'Back', articles_path

@@ -4,14 +4,21 @@ table
     th Title
     th Text
     th Category
+    th State
   = link_to 'New article', new_article_path
   - @articles.each do |article|
     tr
       td= article.title
       td= article.text
       td= article.category&.name
+      td= article.state
       td= link_to 'Show', article_path(article)
-      td= link_to 'Edit', edit_article_path(article)
+      td
+        - if article.draft?
+          = link_to 'Edit', edit_article_path(article)
       td= link_to 'Destroy', article_path(article),
           method: :delete,
           data: { confirm: 'Are you sure?' }
+      td
+        - if article.may_publish?
+          = link_to 'Moderate', edit_moderation_article_path(article)
