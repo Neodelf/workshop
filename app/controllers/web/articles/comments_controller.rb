@@ -1,4 +1,4 @@
-class Web::Articles::CommentsController < Web::ApplicationController
+class Web::Articles::CommentsController < Web::Articles::ApplicationController
 
   http_basic_authenticate_with name: "viraj", password: "password", only: :destroy
 
