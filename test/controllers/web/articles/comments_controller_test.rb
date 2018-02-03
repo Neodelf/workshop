@@ -3,7 +3,7 @@ require 'test_helper'
 class Web::Articles::CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @article = articles(:one)
-    @comment = article_comments(:one)
+    @comment = comments(:one)
   end
 
   test 'should create' do
@@ -16,7 +16,6 @@ class Web::Articles::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should destroy' do
     comment = @article.comments.first
-
     delete article_comment_url(@article.id, comment.id)
   end
 end

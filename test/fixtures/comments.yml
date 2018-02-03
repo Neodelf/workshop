@@ -1,0 +1,12 @@
+_fixture:
+  model_class: Article::Comment
+
+one:
+  commentor: $LABEL
+  body: $LABEL
+  article: one
+
+two:
+  commentor: $LABEL
+  body: $LABEL
+  article: two

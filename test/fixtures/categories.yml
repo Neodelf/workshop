@@ -1,0 +1,5 @@
+_fixture:
+  model_class: Article::Category
+
+one:
+  name: $LABEL

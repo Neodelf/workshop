@@ -5,7 +5,7 @@ class Web::Moderation::ArticlesController < Web::Moderation::ApplicationControll
 
   def update
     @article = Web::ModerationArticleType.find(params[:id])
-    if @article.update(web_moderation_article_params)
+    if @article.update_attributes(web_moderation_article_params)
       redirect_to @article
     else
       render :edit
