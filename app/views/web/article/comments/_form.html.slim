@@ -1,4 +1,4 @@
-= form_with(model: [ @article, @article.comments.build ], url: article_comments_path(@article)) do |form|
+= simple_form_for @article.comments.build, url: article_comments_path(@article) do |form|
   p
     = form.label :commentor
     br
